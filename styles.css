@@ -921,6 +921,12 @@ a {
     align-items: start;
 }
 
+@media (min-width: 1025px) {
+    .reviews-container-grid.homepage-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 .reviews-feed-block {
     display: flex;
     flex-direction: column;

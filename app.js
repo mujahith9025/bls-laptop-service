@@ -255,19 +255,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-            // Prepend new review card
-            reviewsFeedList.insertBefore(newCard, reviewsFeedList.firstChild);
+            // Prepend new review card if feed list container exists
+            if (reviewsFeedList) {
+                reviewsFeedList.insertBefore(newCard, reviewsFeedList.firstChild);
 
-            // Re-render Lucide Vector Icons in the prepended elements
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
+                // Re-render Lucide Vector Icons in the prepended elements
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+
+                // Smooth fade-in animation
+                setTimeout(() => {
+                    newCard.style.opacity = '1';
+                    newCard.style.transform = 'translateY(0)';
+                }, 50);
             }
-
-            // Smooth fade-in animation
-            setTimeout(() => {
-                newCard.style.opacity = '1';
-                newCard.style.transform = 'translateY(0)';
-            }, 50);
 
             // 2. Clipboard Sync Auto-Copy
             if (navigator.clipboard && navigator.clipboard.writeText) {
