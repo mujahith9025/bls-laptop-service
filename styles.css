@@ -2131,3 +2131,106 @@ footer {
         font-size: 0.95rem;
     }
 }
+
+/* ==========================================================================
+   Multi-Page Services Intro Styling
+   ========================================================================== */
+
+.services-intro-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.service-intro-card {
+    background: var(--grad-dark-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--glass-glow);
+}
+
+.service-intro-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--glass-border-hover);
+    box-shadow: 0 15px 35px rgba(0, 242, 254, 0.08);
+}
+
+.service-intro-card .card-glow {
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 120px;
+    height: 120px;
+    background: var(--accent-cyan);
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.15;
+    transition: var(--transition-smooth);
+}
+
+.service-intro-card:hover .card-glow {
+    opacity: 0.3;
+    width: 180px;
+    height: 180px;
+}
+
+.service-intro-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.service-intro-card p {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.service-intro-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.service-intro-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.service-intro-features li i {
+    width: 16px;
+    height: 16px;
+    color: var(--accent-cyan);
+}
+
+.services-intro-cta {
+    text-align: center;
+    margin-top: 32px;
+}
+
+@media (max-width: 768px) {
+    .services-intro-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .service-intro-card {
+        padding: 30px 24px;
+    }
+}

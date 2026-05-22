@@ -91,6 +91,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Deep-linking: Auto-select tab from query string parameter on services.html
+    const urlParams = new URLSearchParams(window.location.search);
+    const activeTabParam = urlParams.get('tab');
+    if (activeTabParam && (activeTabParam === 'laptop' || activeTabParam === 'mobile')) {
+        const targetTabId = activeTabParam === 'laptop' ? 'laptop-services' : 'mobile-services';
+        const targetBtn = document.querySelector(`.tab-btn[data-tab="${targetTabId}"]`);
+        if (targetBtn) {
+            // Remove active states from all buttons and tabs
+            tabButtons.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+
+            // Activate target
+            targetBtn.classList.add('active');
+            const targetContent = document.getElementById(targetTabId);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        }
+    }
+
     // 6. Interactive Customer Reviews & Feedback Form
     const starSelector = document.getElementById('interactive-star-selector');
     const interactiveStars = document.querySelectorAll('.interactive-star');
@@ -357,68 +377,71 @@ document.addEventListener('DOMContentLoaded', () => {
     const priceText = document.getElementById('est-price');
     const timeText = document.getElementById('est-time');
 
-    // Populate selects based on device type
-    function updateSelectors() {
-        let selectedDevice = 'laptop';
-        for (const radio of deviceTypeRadios) {
-            if (radio.checked) {
-                selectedDevice = radio.value;
-                // Add active visual state to parent label wrapper
-                radio.closest('.device-radio-label').classList.add('active');
-            } else {
-                radio.closest('.device-radio-label').classList.remove('active');
+    // Only execute cost estimator logic if the elements exist in the DOM (e.g. index.html)
+    if (brandSelect && issueSelect && deviceTypeRadios.length > 0) {
+        // Populate selects based on device type
+        function updateSelectors() {
+            let selectedDevice = 'laptop';
+            for (const radio of deviceTypeRadios) {
+                if (radio.checked) {
+                    selectedDevice = radio.value;
+                    // Add active visual state to parent label wrapper
+                    radio.closest('.device-radio-label').classList.add('active');
+                } else {
+                    radio.closest('.device-radio-label').classList.remove('active');
+                }
+            }
+
+            const data = estimatorData[selectedDevice];
+
+            // Populate Brands
+            brandSelect.innerHTML = '';
+            data.brands.forEach(brand => {
+                const opt = document.createElement('option');
+                opt.value = brand;
+                opt.textContent = brand;
+                brandSelect.appendChild(opt);
+            });
+
+            // Populate Issues
+            issueSelect.innerHTML = '';
+            data.issues.forEach(issue => {
+                const opt = document.createElement('option');
+                opt.value = issue.id;
+                opt.textContent = issue.text;
+                issueSelect.appendChild(opt);
+            });
+
+            calculateEstimate();
+        }
+
+        // Calculate real-time estimated ranges
+        function calculateEstimate() {
+            let selectedDevice = 'laptop';
+            for (const radio of deviceTypeRadios) {
+                if (radio.checked) selectedDevice = radio.value;
+            }
+
+            const selectedIssueId = issueSelect.value;
+            const issuesList = estimatorData[selectedDevice].issues;
+            const matchedIssue = issuesList.find(issue => issue.id === selectedIssueId);
+
+            if (matchedIssue) {
+                // Render cost range & duration
+                priceText.textContent = `₹${matchedIssue.min.toLocaleString('en-IN')} - ₹${matchedIssue.max.toLocaleString('en-IN')}`;
+                timeText.textContent = matchedIssue.time;
             }
         }
 
-        const data = estimatorData[selectedDevice];
-
-        // Populate Brands
-        brandSelect.innerHTML = '';
-        data.brands.forEach(brand => {
-            const opt = document.createElement('option');
-            opt.value = brand;
-            opt.textContent = brand;
-            brandSelect.appendChild(opt);
-        });
-
-        // Populate Issues
-        issueSelect.innerHTML = '';
-        data.issues.forEach(issue => {
-            const opt = document.createElement('option');
-            opt.value = issue.id;
-            opt.textContent = issue.text;
-            issueSelect.appendChild(opt);
-        });
-
-        calculateEstimate();
-    }
-
-    // Calculate real-time estimated ranges
-    function calculateEstimate() {
-        let selectedDevice = 'laptop';
+        // Add event listeners to radio change options
         for (const radio of deviceTypeRadios) {
-            if (radio.checked) selectedDevice = radio.value;
+            radio.addEventListener('change', updateSelectors);
         }
+        issueSelect.addEventListener('change', calculateEstimate);
 
-        const selectedIssueId = issueSelect.value;
-        const issuesList = estimatorData[selectedDevice].issues;
-        const matchedIssue = issuesList.find(issue => issue.id === selectedIssueId);
-
-        if (matchedIssue) {
-            // Render cost range & duration
-            priceText.textContent = `₹${matchedIssue.min.toLocaleString('en-IN')} - ₹${matchedIssue.max.toLocaleString('en-IN')}`;
-            timeText.textContent = matchedIssue.time;
-        }
+        // Initial load call to set up the default selectors
+        updateSelectors();
     }
-
-    // Add event listeners to radio change options
-    for (const radio of deviceTypeRadios) {
-        radio.addEventListener('change', updateSelectors);
-    }
-    issueSelect.addEventListener('change', calculateEstimate);
-
-    // Initial load call to set up the default selectors
-    updateSelectors();
 
     // 8. Booking Form Details Accordion Switcher
     const toggleBookingBtn = document.getElementById('toggle-booking-fields');
@@ -427,100 +450,104 @@ document.addEventListener('DOMContentLoaded', () => {
     const pickupAddress = document.getElementById('pickup-address');
     const pickupLabel = document.querySelector('.label-pickup');
 
-    toggleBookingBtn.addEventListener('click', () => {
-        bookingDetailsBlock.classList.toggle('open');
-        if (bookingDetailsBlock.classList.contains('open')) {
-            toggleBookingBtn.innerHTML = '<i data-lucide="chevron-up"></i> Hide Booking Form';
-            bookingDetailsBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } else {
-            toggleBookingBtn.innerHTML = '<i data-lucide="calendar"></i> Book Repair Slot / Pickup';
-        }
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    });
-
-    // Check service collection options (Home Pickup details toggle)
-    serviceOptionRadios.forEach(radio => {
-        radio.addEventListener('change', () => {
-            // Apply active class to selected options card
-            serviceOptionRadios.forEach(r => r.closest('.option-card').classList.remove('active'));
-            radio.closest('.option-card').classList.add('active');
-
-            if (radio.value === 'home_pickup') {
-                pickupAddress.classList.remove('hidden');
-                pickupLabel.classList.remove('hidden');
-                pickupAddress.required = true;
+    if (toggleBookingBtn && bookingDetailsBlock) {
+        toggleBookingBtn.addEventListener('click', () => {
+            bookingDetailsBlock.classList.toggle('open');
+            if (bookingDetailsBlock.classList.contains('open')) {
+                toggleBookingBtn.innerHTML = '<i data-lucide="chevron-up"></i> Hide Booking Form';
+                bookingDetailsBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             } else {
-                pickupAddress.classList.add('hidden');
-                pickupLabel.classList.add('hidden');
-                pickupAddress.required = false;
+                toggleBookingBtn.innerHTML = '<i data-lucide="calendar"></i> Book Repair Slot / Pickup';
+            }
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
             }
         });
-    });
+
+        // Check service collection options (Home Pickup details toggle)
+        serviceOptionRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                // Apply active class to selected options card
+                serviceOptionRadios.forEach(r => r.closest('.option-card').classList.remove('active'));
+                radio.closest('.option-card').classList.add('active');
+
+                if (radio.value === 'home_pickup') {
+                    pickupAddress.classList.remove('hidden');
+                    pickupLabel.classList.remove('hidden');
+                    pickupAddress.required = true;
+                } else {
+                    pickupAddress.classList.add('hidden');
+                    pickupLabel.classList.add('hidden');
+                    pickupAddress.required = false;
+                }
+            });
+        });
+    }
 
     // 9. Booking Submission & WhatsApp URL Generator
     const quoteForm = document.getElementById('quote-form');
 
-    quoteForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    if (quoteForm) {
+        quoteForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-        // Get Client Fields
-        const nameVal = document.getElementById('cust-name').value.trim();
-        const phoneVal = document.getElementById('cust-phone').value.trim();
+            // Get Client Fields
+            const nameVal = document.getElementById('cust-name').value.trim();
+            const phoneVal = document.getElementById('cust-phone').value.trim();
 
-        if (!nameVal || !phoneVal) {
-            alert('Please fill in your Name and 10-digit Phone Number to complete the request.');
-            return;
-        }
-
-        // Validate phone format
-        const phoneRegex = /^[6-9]\d{9}$/;
-        if (!phoneRegex.test(phoneVal)) {
-            alert('Please enter a valid 10-digit Indian phone number.');
-            return;
-        }
-
-        // Retrieve Selection Info
-        let selectedDevice = 'laptop';
-        for (const radio of deviceTypeRadios) {
-            if (radio.checked) selectedDevice = radio.value;
-        }
-        const brandVal = brandSelect.value;
-        const issueTextVal = issueSelect.options[issueSelect.selectedIndex].text;
-        const estPriceVal = priceText.textContent;
-
-        let selectedOption = 'Store Walk-in';
-        let isPickup = false;
-        for (const opt of serviceOptionRadios) {
-            if (opt.checked) {
-                selectedOption = opt.value === 'home_pickup' ? 'Home Pickup' : 'Store Walk-in';
-                isPickup = opt.value === 'home_pickup';
+            if (!nameVal || !phoneVal) {
+                alert('Please fill in your Name and 10-digit Phone Number to complete the request.');
+                return;
             }
-        }
 
-        const addressVal = pickupAddress.value.trim();
+            // Validate phone format
+            const phoneRegex = /^[6-9]\d{9}$/;
+            if (!phoneRegex.test(phoneVal)) {
+                alert('Please enter a valid 10-digit Indian phone number.');
+                return;
+            }
 
-        // Build pre-filled WhatsApp text
-        let message = `Hi BLS Laptop Service!\n\n`;
-        message += `I would like to book a repair service slot:\n`;
-        message += `• *Device:* ${selectedDevice.toUpperCase()}\n`;
-        message += `• *Brand:* ${brandVal}\n`;
-        message += `• *Issue:* ${issueTextVal}\n`;
-        message += `• *Est. Price:* ${estPriceVal}\n\n`;
-        message += `*Customer Details:*\n`;
-        message += `• *Name:* ${nameVal}\n`;
-        message += `• *Phone:* ${phoneVal}\n`;
-        message += `• *Service Type:* ${selectedOption}\n`;
+            // Retrieve Selection Info
+            let selectedDevice = 'laptop';
+            for (const radio of deviceTypeRadios) {
+                if (radio.checked) selectedDevice = radio.value;
+            }
+            const brandVal = brandSelect.value;
+            const issueTextVal = issueSelect.options[issueSelect.selectedIndex].text;
+            const estPriceVal = priceText.textContent;
 
-        if (isPickup && addressVal) {
-            message += `• *Pickup Address:* ${addressVal}\n`;
-        }
+            let selectedOption = 'Store Walk-in';
+            let isPickup = false;
+            for (const opt of serviceOptionRadios) {
+                if (opt.checked) {
+                    selectedOption = opt.value === 'home_pickup' ? 'Home Pickup' : 'Store Walk-in';
+                    isPickup = opt.value === 'home_pickup';
+                }
+            }
 
-        // Encode and redirect to WhatsApp link
-        const whatsappNumber = '919789860286';
-        const finalUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-        
-        window.open(finalUrl, '_blank');
-    });
+            const addressVal = pickupAddress.value.trim();
+
+            // Build pre-filled WhatsApp text
+            let message = `Hi BLS Laptop Service!\n\n`;
+            message += `I would like to book a repair service slot:\n`;
+            message += `• *Device:* ${selectedDevice.toUpperCase()}\n`;
+            message += `• *Brand:* ${brandVal}\n`;
+            message += `• *Issue:* ${issueTextVal}\n`;
+            message += `• *Est. Price:* ${estPriceVal}\n\n`;
+            message += `*Customer Details:*\n`;
+            message += `• *Name:* ${nameVal}\n`;
+            message += `• *Phone:* ${phoneVal}\n`;
+            message += `• *Service Type:* ${selectedOption}\n`;
+
+            if (isPickup && addressVal) {
+                message += `• *Pickup Address:* ${addressVal}\n`;
+            }
+
+            // Encode and redirect to WhatsApp link
+            const whatsappNumber = '919789860286';
+            const finalUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            
+            window.open(finalUrl, '_blank');
+        });
+    }
 });

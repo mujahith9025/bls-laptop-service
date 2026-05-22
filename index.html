@@ -38,7 +38,7 @@
             
             <nav id="nav-menu">
                 <a href="#hero" class="nav-link active">Home</a>
-                <a href="#services" class="nav-link">Services</a>
+                <a href="services.html" class="nav-link">Services</a>
                 <a href="#estimator" class="nav-link">Estimate Cost</a>
                 <a href="#reviews" class="nav-link">Reviews</a>
                 <a href="#about" class="nav-link">About Us</a>
@@ -63,7 +63,7 @@
     <div id="mobile-nav" class="hidden">
         <nav class="mobile-nav-links">
             <a href="#hero" class="mobile-link">Home</a>
-            <a href="#services" class="mobile-link">Services</a>
+            <a href="services.html" class="mobile-link">Services</a>
             <a href="#estimator" class="mobile-link">Estimate Cost</a>
             <a href="#reviews" class="mobile-link">Reviews</a>
             <a href="#about" class="mobile-link">About Us</a>
@@ -201,184 +201,57 @@
         </div>
     </section>
 
-    <!-- Services Catalog -->
+    <!-- Services Introduction Section -->
     <section id="services" class="services-section">
         <div class="container">
-            <div class="section-title">
-                <h2>Our Repair <span class="gradient-text">Expertise</span></h2>
-                <p>Select your device class below to view our comprehensive repair services, estimated durations, and coverage.</p>
+            <div class="section-title text-center">
+                <h2>Our Repair <span class="gradient-text">Services</span></h2>
+                <p>From chip-level diagnostics to certified parts replacement, we offer express repairs for laptops and mobile phones in Old Pallavaram, Chennai.</p>
             </div>
 
-            <!-- Tab Switcher -->
-            <div class="tabs-container">
-                <button class="tab-btn active" data-tab="laptop-services">
-                    <i data-lucide="laptop"></i>
-                    Laptop Repairs
-                </button>
-                <button class="tab-btn" data-tab="mobile-services">
-                    <i data-lucide="smartphone"></i>
-                    Mobile & Tablet Repairs
-                </button>
-            </div>
-
-            <!-- Laptop Services Grid -->
-            <div id="laptop-services" class="tab-content active">
-                <div class="services-grid">
-                    <div class="service-detail-card">
-                        <div class="card-glow"></div>
+            <div class="services-intro-grid">
+                <!-- Laptop Repair Intro Card -->
+                <div class="service-intro-card">
+                    <div class="card-glow"></div>
+                    <div>
                         <div class="service-header">
-                            <i data-lucide="microscope" class="service-main-icon"></i>
-                            <span class="service-time"><i data-lucide="clock"></i> 24-48 hrs</span>
+                            <i data-lucide="laptop" class="service-main-icon" style="width: 40px; height: 40px; color: var(--accent-cyan);"></i>
                         </div>
-                        <h3>Chip-Level Motherboard Service</h3>
-                        <p>Repairing short circuits, dead motherboards, power IC failures, BIOS programming issues, and charging faults.</p>
-                        <ul class="service-bullet-list">
-                            <li><i data-lucide="check"></i> Power IC & PMIC replacement</li>
-                            <li><i data-lucide="check"></i> BIOS reprogramming & unlocking</li>
-                            <li><i data-lucide="check"></i> Micro-soldering of capacitors & MOSFETs</li>
+                        <h3 style="margin-top: 16px;">Laptop & MacBook Service</h3>
+                        <p>Specialized chip-level repairs, board diagnostics, dead system restorations, motherboard servicing, and fast component upgrades to restore your workstation's productivity.</p>
+                        <ul class="service-intro-features">
+                            <li><i data-lucide="check"></i> Micro-soldering Motherboard Repair</li>
+                            <li><i data-lucide="check"></i> Blazing Fast SSD & RAM Upgrades</li>
+                            <li><i data-lucide="check"></i> Screen & Battery Replacements</li>
                         </ul>
                     </div>
+                    <a href="services.html?tab=laptop" class="btn btn-secondary btn-block">Explore Laptop Repairs</a>
+                </div>
 
-                    <div class="service-detail-card">
-                        <div class="card-glow"></div>
+                <!-- Mobile & Tablet Repair Intro Card -->
+                <div class="service-intro-card">
+                    <div class="card-glow"></div>
+                    <div>
                         <div class="service-header">
-                            <i data-lucide="monitor" class="service-main-icon"></i>
-                            <span class="service-time"><i data-lucide="clock"></i> 1-2 hrs</span>
+                            <i data-lucide="smartphone" class="service-main-icon" style="width: 40px; height: 40px; color: var(--accent-cyan);"></i>
                         </div>
-                        <h3>Display & Screen Replacement</h3>
-                        <p>Replacing cracked, flickering, dim, line-filled, or completely dead laptop displays with premium OEM panels.</p>
-                        <ul class="service-bullet-list">
-                            <li><i data-lucide="check"></i> HD, FHD, and 4K UHD screens</li>
-                            <li><i data-lucide="check"></i> Paper LED & Slim screen panels</li>
-                            <li><i data-lucide="check"></i> Hinges & Bezel alignment</li>
+                        <h3 style="margin-top: 16px;">Mobile & Tablet Service</h3>
+                        <p>Certified display restorations, genuine battery swaps, type-C charging port soldering, software loop flashing, and diagnostics for all popular Android and iOS smartphones.</p>
+                        <ul class="service-intro-features">
+                            <li><i data-lucide="check"></i> Touch Screen & OLED Restorations</li>
+                            <li><i data-lucide="check"></i> Charging Port & DC Jack Soldering</li>
+                            <li><i data-lucide="check"></i> iOS & Android Software Flash</li>
                         </ul>
                     </div>
-
-                    <div class="service-detail-card">
-                        <div class="card-glow"></div>
-                        <div class="service-header">
-                            <i data-lucide="gauge" class="service-main-icon"></i>
-                            <span class="service-time"><i data-lucide="clock"></i> 1 hr</span>
-                        </div>
-                        <h3>SSD Upgrade & Speed Tuning</h3>
-                        <p>Upgrading sluggish hard drives to blazing-fast Solid State Drives (SSDs) and expanding RAM for heavy multitasking.</p>
-                        <ul class="service-bullet-list">
-                            <li><i data-lucide="check"></i> NVMe M.2 & SATA SSD upgrades</li>
-                            <li><i data-lucide="check"></i> System cloning (keep all files)</li>
-                            <li><i data-lucide="check"></i> Performance optimization</li>
-                        </ul>
-                    </div>
-
-                    <div class="service-detail-card">
-                        <div class="card-glow"></div>
-                        <div class="service-header">
-                            <i data-lucide="keyboard" class="service-main-icon"></i>
-                            <span class="service-time"><i data-lucide="clock"></i> 2 hrs</span>
-                        </div>
-                        <h3>Keyboard & Touchpad Repair</h3>
-                        <p>Fixing sticking keys, unresponsive keyboard buttons, trackpad jumping, or dead touchpad buttons.</p>
-                        <ul class="service-bullet-list">
-                            <li><i data-lucide="check"></i> Original keyboard replacements</li>
-                            <li><i data-lucide="check"></i> Backlit keyboard compatibility</li>
-                            <li><i data-lucide="check"></i> Trackpad calibration</li>
-                        </ul>
-                    </div>
-
-                    <div class="service-detail-card">
-                        <div class="card-glow"></div>
-                        <div class="service-header">
-                            <i data-lucide="battery-charging" class="service-main-icon"></i>
-                            <span class="service-time"><i data-lucide="clock"></i> 1 hr</span>
-                        </div>
-                        <h3>Battery & Charger Service</h3>
-                        <p>Replacing batteries that drain fast, swell, or won't charge. Replacements available with warranties.</p>
-                        <ul class="service-bullet-list">
-                            <li><i data-lucide="check"></i> High-quality replacement batteries</li>
-                            <li><i data-lucide="check"></i> Original charger adapters</li>
-                            <li><i data-lucide="check"></i> Charging port socket (DC Jack) repair</li>
-                        </ul>
-                    </div>
-
-                    <div class="service-detail-card">
-                        <div class="card-glow"></div>
-                        <div class="service-header">
-                            <i data-lucide="droplet-off" class="service-main-icon"></i>
-                            <span class="service-time"><i data-lucide="clock"></i> 24 hrs</span>
-                        </div>
-                        <h3>Liquid Spillage Cleanup</h3>
-                        <p>Accidentally spilled tea, coffee, or water? We provide intensive chemical wash and ultrasonic motherboard cleaning.</p>
-                        <ul class="service-bullet-list">
-                            <li><i data-lucide="check"></i> Corrosion removal chemical wash</li>
-                            <li><i data-lucide="check"></i> Complete diagnostics dry run</li>
-                            <li><i data-lucide="check"></i> Keypad & controller testing</li>
-                        </ul>
-                    </div>
+                    <a href="services.html?tab=mobile" class="btn btn-secondary btn-block">Explore Mobile Repairs</a>
                 </div>
             </div>
 
-            <!-- Mobile Services Grid -->
-            <div id="mobile-services" class="tab-content">
-                <div class="services-grid">
-                    <div class="service-detail-card">
-                        <div class="card-glow"></div>
-                        <div class="service-header">
-                            <i data-lucide="smartphone" class="service-main-icon"></i>
-                            <span class="service-time"><i data-lucide="clock"></i> 1-2 hrs</span>
-                        </div>
-                        <h3>Touch Screen & LCD Replacement</h3>
-                        <p>Cracked glass, black ink spots on display, non-responsive touch? Premium quality screen restorations for all devices.</p>
-                        <ul class="service-bullet-list">
-                            <li><i data-lucide="check"></i> AMOLED, OLED & IPS LCD original screens</li>
-                            <li><i data-lucide="check"></i> Only Glass / Only Touch replacements</li>
-                            <li><i data-lucide="check"></i> Zero-dust screen fitting</li>
-                        </ul>
-                    </div>
-
-                    <div class="service-detail-card">
-                        <div class="card-glow"></div>
-                        <div class="service-header">
-                            <i data-lucide="battery" class="service-main-icon"></i>
-                            <span class="service-time"><i data-lucide="clock"></i> 30 mins</span>
-                        </div>
-                        <h3>Battery Replacement</h3>
-                        <p>Resolve mobile phone heating, fast battery drainage, sudden shutdown, or swollen back cover issues.</p>
-                        <ul class="service-bullet-list">
-                            <li><i data-lucide="check"></i> Original grade high-capacity batteries</li>
-                            <li><i data-lucide="check"></i> Backpanel resealing</li>
-                            <li><i data-lucide="check"></i> Battery health calibration</li>
-                        </ul>
-                    </div>
-
-                    <div class="service-detail-card">
-                        <div class="card-glow"></div>
-                        <div class="service-header">
-                            <i data-lucide="cable" class="service-main-icon"></i>
-                            <span class="service-time"><i data-lucide="clock"></i> 1 hr</span>
-                        </div>
-                        <h3>Charging Port (Type-C/USB) Repair</h3>
-                        <p>Repairing loose charger ports, moisture warnings, slow charging, or port not responding to PC connection.</p>
-                        <ul class="service-bullet-list">
-                            <li><i data-lucide="check"></i> Micro USB & Type-C sub-board replacements</li>
-                            <li><i data-lucide="check"></i> Micro-soldering of original ports</li>
-                            <li><i data-lucide="check"></i> Mic & headphone jack repairs</li>
-                        </ul>
-                    </div>
-
-                    <div class="service-detail-card">
-                        <div class="card-glow"></div>
-                        <div class="service-header">
-                            <i data-lucide="binary" class="service-main-icon"></i>
-                            <span class="service-time"><i data-lucide="clock"></i> 2-4 hrs</span>
-                        </div>
-                        <h3>Software & Boot Loop Flashing</h3>
-                        <p>Resolving phone stuck on logo (boot loop), password unlock, operating system crashes, or data backup needs.</p>
-                        <ul class="service-bullet-list">
-                            <li><i data-lucide="check"></i> Android & iOS flashing</li>
-                            <li><i data-lucide="check"></i> Official firmware restorations</li>
-                            <li><i data-lucide="check"></i> Safe data recovery attempts</li>
-                        </ul>
-                    </div>
-                </div>
+            <!-- Global Services CTA Link -->
+            <div class="services-intro-cta">
+                <a href="services.html" class="btn btn-primary btn-lg">
+                    <i data-lucide="external-link"></i> View Full Services Catalog & Pricing Details
+                </a>
             </div>
         </div>
     </section>
