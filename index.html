@@ -39,7 +39,7 @@
             <nav id="nav-menu">
                 <a href="#hero" class="nav-link active">Home</a>
                 <a href="services.html" class="nav-link">Services</a>
-                <a href="#estimator" class="nav-link">Estimate Cost</a>
+                <a href="smart-quote.html" class="nav-link">Estimate Cost</a>
                 <a href="#reviews" class="nav-link">Reviews</a>
                 <a href="#about" class="nav-link">About Us</a>
                 <a href="#contact" class="nav-link">Contact</a>
@@ -50,7 +50,7 @@
                     <i data-lucide="phone"></i>
                     <span>+91 97898 60286</span>
                 </a>
-                <a href="#estimator" class="btn btn-primary nav-btn">Book Service</a>
+                <a href="smart-quote.html" class="btn btn-primary nav-btn">Book Service</a>
                 <button id="mobile-menu-toggle" aria-label="Toggle Menu">
                     <i data-lucide="menu" class="menu-icon"></i>
                     <i data-lucide="x" class="close-icon hidden"></i>
@@ -64,7 +64,7 @@
         <nav class="mobile-nav-links">
             <a href="#hero" class="mobile-link">Home</a>
             <a href="services.html" class="mobile-link">Services</a>
-            <a href="#estimator" class="mobile-link">Estimate Cost</a>
+            <a href="smart-quote.html" class="mobile-link">Estimate Cost</a>
             <a href="#reviews" class="mobile-link">Reviews</a>
             <a href="#about" class="mobile-link">About Us</a>
             <a href="#contact" class="mobile-link">Contact</a>
@@ -87,7 +87,7 @@
                 <h1>Premium Sales & <span class="gradient-text">Expert Tech Repairs</span></h1>
                 <p class="hero-subtitle">Fast, secure, and expert diagnostics for Laptops, Mobiles, and Desktops. Located in Old Pallavaram, Chennai. We bring your dead devices back to life.</p>
                 <div class="hero-ctas">
-                    <a href="#estimator" class="btn btn-primary btn-lg">Get Repair Estimate</a>
+                    <a href="smart-quote.html" class="btn btn-primary btn-lg">Get Repair Estimate</a>
                     <a href="#services" class="btn btn-secondary btn-lg">Explore Services</a>
                 </div>
                 
@@ -256,122 +256,55 @@
     </section>
 
 
-    <!-- Interactive Cost Estimator & Booking Section -->
-    <section id="estimator" class="estimator-section">
-        <div class="container estimator-container">
-            <div class="estimator-content-block">
-                <h2>Get a Smart <span class="gradient-text">Repair Quote</span></h2>
-                <p class="description">Select your device type, brand, and the issues you're facing. Our instant quote engine calculates a real-time price range based on market cost of parts and labour. No registration required.</p>
+    <!-- Interactive Cost Estimator & Booking Section Teaser -->
+    <section id="estimator" class="estimator-section" style="padding: 80px 0;">
+        <div class="container">
+            <div class="glass-panel" style="padding: 60px; border-radius: 24px; position: relative; overflow: hidden; text-align: center;">
+                <div class="card-glow" style="background: var(--accent-cyan); opacity: 0.12; width: 300px; height: 300px; top: -150px; right: -150px;"></div>
                 
-                <div class="booking-features-vertical">
-                    <div class="b-feat-item">
-                        <div class="b-feat-icon"><i data-lucide="dollar-sign"></i></div>
+                <div class="badge" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 242, 254, 0.08); border: 1px solid rgba(0, 242, 254, 0.2); color: var(--accent-cyan); padding: 6px 14px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 24px;">
+                    <span class="pulse-dot"></span>
+                    Instant Transparent Calculator
+                </div>
+                
+                <h2 style="font-size: 2.8rem; line-height: 1.1; margin-bottom: 16px;">Get a Smart <span class="gradient-text">Repair Quote</span></h2>
+                <p style="color: var(--text-secondary); font-size: 1.15rem; max-width: 750px; margin: 0 auto 40px auto; line-height: 1.6;">
+                    Curious about the repair costs? Our smart calculator computes real-time pricing brackets based on parts market cost, diagnostics, and professional labor. No registration required—get your estimate in under 60 seconds.
+                </p>
+
+                <!-- Value Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto 48px auto; text-align: left;">
+                    <div style="display: flex; gap: 16px; align-items: flex-start; padding: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: 12px;">
+                        <div class="b-feat-icon" style="width: 36px; height: 36px; background: rgba(0, 242, 254, 0.08); border: 1px solid rgba(0, 242, 254, 0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i data-lucide="calculator" style="width: 18px; height: 18px; color: var(--accent-cyan);"></i></div>
                         <div>
-                            <h4>No Hidden Charges</h4>
-                            <p>All quotes include standard testing, diagnostic fees, and professional installation costs.</p>
+                            <h4 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 4px;">Smart Calculator</h4>
+                            <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0; line-height: 1.4;">Real-time price brackets for screens, motherboards, & batteries.</p>
                         </div>
                     </div>
-                    <div class="b-feat-item">
-                        <div class="b-feat-icon"><i data-lucide="calendar"></i></div>
+                    <div style="display: flex; gap: 16px; align-items: flex-start; padding: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: 12px;">
+                        <div class="b-feat-icon" style="width: 36px; height: 36px; background: rgba(0, 242, 254, 0.08); border: 1px solid rgba(0, 242, 254, 0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i data-lucide="dollar-sign" style="width: 18px; height: 18px; color: var(--accent-cyan);"></i></div>
                         <div>
-                            <h4>Book Online, Pay After Repair</h4>
-                            <p>Book your service slot. We diagnose, estimate, repair, and you only pay once you verify the device.</p>
+                            <h4 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 4px;">Zero Hidden Fees</h4>
+                            <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0; line-height: 1.4;">Diagnostics, testing, and standard parts installation included.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 16px; align-items: flex-start; padding: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); border-radius: 12px;">
+                        <div class="b-feat-icon" style="width: 36px; height: 36px; background: rgba(0, 242, 254, 0.08); border: 1px solid rgba(0, 242, 254, 0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i data-lucide="calendar" style="width: 18px; height: 18px; color: var(--accent-cyan);"></i></div>
+                        <div>
+                            <h4 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 4px;">Book in 1-Click</h4>
+                            <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0; line-height: 1.4;">Choose walk-in slots or home pickup in Old Pallavaram.</p>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Estimator Card -->
-            <div class="estimator-card glass-panel">
-                <form id="quote-form">
-                    <!-- Step 1: Device Type -->
-                    <div class="form-group">
-                        <label class="form-label">1. Choose Device Type</label>
-                        <div class="device-radio-grid">
-                            <label class="device-radio-label active">
-                                <input type="radio" name="device_type" value="laptop" checked>
-                                <i data-lucide="laptop"></i>
-                                <span>Laptop</span>
-                            </label>
-                            <label class="device-radio-label">
-                                <input type="radio" name="device_type" value="mobile">
-                                <i data-lucide="smartphone"></i>
-                                <span>Mobile</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Step 2: Brand Selection -->
-                    <div class="form-group">
-                        <label for="device-brand" class="form-label">2. Select Brand</label>
-                        <select id="device-brand" class="form-select">
-                            <!-- Populated dynamically via JS -->
-                        </select>
-                    </div>
-
-                    <!-- Step 3: Issue Selection -->
-                    <div class="form-group">
-                        <label for="device-issue" class="form-label">3. Select Issue</label>
-                        <select id="device-issue" class="form-select">
-                            <!-- Populated dynamically via JS -->
-                        </select>
-                    </div>
-
-                    <!-- Live Quote Display -->
-                    <div class="quote-display-container">
-                        <div class="quote-header">Estimated Repair Cost</div>
-                        <div class="price-range" id="est-price">₹1,500 - ₹2,500</div>
-                        <div class="est-duration-line">
-                            <span class="est-label">Estimated Time:</span>
-                            <span class="est-value" id="est-time">1 - 2 Hours</span>
-                        </div>
-                        <p class="price-disclaimer">*Costs vary based on specific laptop/mobile models and parts quality choice.</p>
-                    </div>
-
-                    <!-- Booking Accordion Trigger -->
-                    <button type="button" class="btn btn-secondary btn-block" id="toggle-booking-fields">
-                        <i data-lucide="calendar"></i> Book Repair Slot / Pickup
-                    </button>
-
-                    <!-- Booking Details Fields (Toggled via JS) -->
-                    <div id="booking-details-block" class="hidden-accordion">
-                        <div class="form-row">
-                            <div class="form-group col-6">
-                                <label for="cust-name" class="form-label">Your Name</label>
-                                <input type="text" id="cust-name" class="form-input" placeholder="e.g. Faizal">
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="cust-phone" class="form-label">Phone Number</label>
-                                <input type="tel" id="cust-phone" class="form-input" placeholder="10-digit Mobile">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Service Option</label>
-                            <div class="service-option-grid">
-                                <label class="option-card active">
-                                    <input type="radio" name="service_option" value="store_visit" checked>
-                                    <i data-lucide="store"></i>
-                                    <span>Store Walk-in</span>
-                                </label>
-                                <label class="option-card">
-                                    <input type="radio" name="service_option" value="home_pickup">
-                                    <i data-lucide="truck"></i>
-                                    <span>Home Pickup</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="pickup-address" class="form-label label-pickup hidden">Pickup Address in Pallavaram</label>
-                            <textarea id="pickup-address" class="form-input hidden" rows="2" placeholder="Enter complete address details..."></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-block" id="submit-booking">
-                            <i data-lucide="check"></i> Confirm Booking on WhatsApp
-                        </button>
-                    </div>
-                </form>
+                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                    <a href="smart-quote.html" class="btn btn-primary btn-lg" style="box-shadow: 0 4px 20px rgba(0, 242, 254, 0.2);">
+                        <i data-lucide="calendar"></i> Booking Your Slot
+                    </a>
+                    <a href="https://wa.me/919789860286?text=Hi%20BLS%20Laptop%20Service,%20I%20have%20an%20inquiry%20regarding%20laptop/mobile%20repair." target="_blank" class="btn btn-secondary btn-lg">
+                        <i data-lucide="message-circle"></i> Discuss Custom Fault
+                    </a>
+                </div>
             </div>
         </div>
     </section>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get a smart, real-time repair cost quote for your laptop or mobile phone. Choose device type, brand, and issues at BLS Laptop Service in Old Pallavaram, Chennai.">
+    <meta name="keywords" content="laptop repair cost, mobile repair price estimator, smart repair quote, bls laptop service pallavaram, screen replacement estimate">
+    <meta name="author" content="BLS Laptop Service">
+    <meta name="robots" content="index, follow">
+    <title>Get a Smart Repair Quote | BLS Laptop & Mobile Sales and Service</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons for Modern Tech Vector Styling -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .gradient-cyan-text {
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .estimator-section {
+            padding-top: 150px;
+            padding-bottom: 80px;
+        }
+        
+        @media (max-width: 992px) {
+            .estimator-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .estimator-section {
+                padding-top: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Glow Blobs for Modern Dark Aesthetic -->
+    <div class="glow-blob blob-1" style="background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, transparent 70%);"></div>
+    <div class="glow-blob blob-2" style="background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);"></div>
+    <div class="glow-blob blob-3" style="background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, transparent 70%);"></div>
+
+    <!-- Navigation Header -->
+    <header id="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i data-lucide="cpu"></i>
+                </div>
+                <span>BLS Laptop <span class="accent-text">Service</span></span>
+            </a>
+            
+            <nav id="nav-menu">
+                <a href="index.html#hero" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="smart-quote.html" class="nav-link active">Estimate Cost</a>
+                <a href="index.html#reviews" class="nav-link">Reviews</a>
+                <a href="index.html#about" class="nav-link">About Us</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="tel:+919789860286" class="phone-link desktop-only">
+                    <i data-lucide="phone"></i>
+                    <span>+91 97898 60286</span>
+                </a>
+                <a href="smart-quote.html" class="btn btn-primary nav-btn">Book Service</a>
+                <button id="mobile-menu-toggle" aria-label="Toggle Menu">
+                    <i data-lucide="menu" class="menu-icon"></i>
+                    <i data-lucide="x" class="close-icon hidden"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div id="mobile-nav" class="hidden">
+        <nav class="mobile-nav-links">
+            <a href="index.html#hero" class="mobile-link">Home</a>
+            <a href="services.html" class="mobile-link">Services</a>
+            <a href="smart-quote.html" class="mobile-link">Estimate Cost</a>
+            <a href="index.html#reviews" class="mobile-link">Reviews</a>
+            <a href="index.html#about" class="mobile-link">About Us</a>
+            <a href="index.html#contact" class="mobile-link">Contact</a>
+            <hr class="mobile-divider">
+            <a href="tel:+919789860286" class="mobile-phone-cta">
+                <i data-lucide="phone"></i>
+                <span>+91 97898 60286</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Interactive Cost Estimator & Booking Section -->
+    <section id="estimator" class="estimator-section">
+        <div class="container estimator-container">
+            <div class="estimator-content-block">
+                <div class="badge" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 242, 254, 0.08); border: 1px solid rgba(0, 242, 254, 0.2); color: var(--accent-cyan); padding: 6px 14px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 24px;">
+                    <span class="pulse-dot" style="background: var(--accent-cyan); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.4);"></span>
+                    Transparent Pricing Engine
+                </div>
+                <h2>Get a Smart <span class="gradient-cyan-text">Repair Quote</span></h2>
+                <p class="description">Select your device type, brand, and the issues you're facing. Our instant quote engine calculates a real-time price range based on market cost of parts and labour. No registration required.</p>
+                
+                <div class="booking-features-vertical">
+                    <div class="b-feat-item">
+                        <div class="b-feat-icon"><i data-lucide="dollar-sign"></i></div>
+                        <div>
+                            <h4>No Hidden Charges</h4>
+                            <p>All quotes include standard testing, diagnostic fees, and professional installation costs.</p>
+                        </div>
+                    </div>
+                    <div class="b-feat-item">
+                        <div class="b-feat-icon"><i data-lucide="calendar"></i></div>
+                        <div>
+                            <h4>Book Online, Pay After Repair</h4>
+                            <p>Book your service slot. We diagnose, estimate, repair, and you only pay once you verify the device.</p>
+                        </div>
+                    </div>
+                    <div class="b-feat-item">
+                        <div class="b-feat-icon"><i data-lucide="wrench"></i></div>
+                        <div>
+                            <h4>Genuine Spare Parts Only</h4>
+                            <p>We source certified components directly from OEM partners, backed by warranty security.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estimator Card -->
+            <div class="estimator-card glass-panel">
+                <form id="quote-form">
+                    <!-- Step 1: Device Type -->
+                    <div class="form-group">
+                        <label class="form-label">1. Choose Device Type</label>
+                        <div class="device-radio-grid">
+                            <label class="device-radio-label active">
+                                <input type="radio" name="device_type" value="laptop" checked>
+                                <i data-lucide="laptop"></i>
+                                <span>Laptop</span>
+                            </label>
+                            <label class="device-radio-label">
+                                <input type="radio" name="device_type" value="mobile">
+                                <i data-lucide="smartphone"></i>
+                                <span>Mobile</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Brand Selection -->
+                    <div class="form-group">
+                        <label for="device-brand" class="form-label">2. Select Brand</label>
+                        <select id="device-brand" class="form-select">
+                            <!-- Populated dynamically via JS -->
+                        </select>
+                    </div>
+
+                    <!-- Step 3: Issue Selection -->
+                    <div class="form-group">
+                        <label for="device-issue" class="form-label">3. Select Issue</label>
+                        <select id="device-issue" class="form-select">
+                            <!-- Populated dynamically via JS -->
+                        </select>
+                    </div>
+
+                    <!-- Live Quote Display -->
+                    <div class="quote-display-container">
+                        <div class="quote-header">Estimated Repair Cost</div>
+                        <div class="price-range" id="est-price">₹1,500 - ₹2,500</div>
+                        <div class="est-duration-line">
+                            <span class="est-label">Estimated Time:</span>
+                            <span class="est-value" id="est-time">1 - 2 Hours</span>
+                        </div>
+                        <p class="price-disclaimer">*Costs vary based on specific laptop/mobile models and parts quality choice.</p>
+                    </div>
+
+                    <!-- Booking Accordion Trigger -->
+                    <button type="button" class="btn btn-secondary btn-block" id="toggle-booking-fields">
+                        <i data-lucide="calendar"></i> Book Repair Slot / Pickup
+                    </button>
+
+                    <!-- Booking Details Fields (Toggled via JS) -->
+                    <div id="booking-details-block" class="hidden-accordion">
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="cust-name" class="form-label">Your Name</label>
+                                <input type="text" id="cust-name" class="form-input" placeholder="e.g. Faizal">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="cust-phone" class="form-label">Phone Number</label>
+                                <input type="tel" id="cust-phone" class="form-input" placeholder="10-digit Mobile">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Service Option</label>
+                            <div class="service-option-grid">
+                                <label class="option-card active">
+                                    <input type="radio" name="service_option" value="store_visit" checked>
+                                    <i data-lucide="store"></i>
+                                    <span>Store Walk-in</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="service_option" value="home_pickup">
+                                    <i data-lucide="truck"></i>
+                                    <span>Home Pickup</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label label-pickup hidden">Pickup Address in Pallavaram</label>
+                            <textarea id="pickup-address" class="form-input hidden" rows="2" placeholder="Enter complete address details..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" id="submit-booking">
+                            <i data-lucide="check"></i> Confirm Booking on WhatsApp
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Live WhatsApp Button -->
+    <a href="https://wa.me/919789860286?text=Hi%20BLS%20Laptop%20Service,%20I%20have%20an%20inquiry%20regarding%20laptop/mobile%20repair." 
+       target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+        <i data-lucide="message-circle" class="whatsapp-icon"></i>
+        <span class="whatsapp-tooltip">Chat with our Experts</span>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-left">
+                <a href="index.html" class="logo footer-logo">
+                    <div class="logo-icon"><i data-lucide="cpu"></i></div>
+                    <span>BLS Laptop <span class="accent-text">Service</span></span>
+                </a>
+                <p>Premium Laptop & Mobile Repairs. Trusted by 1000+ local customers in Pallavaram.</p>
+            </div>
+            
+            <div class="footer-right">
+                <p class="copyright">&copy; 2026 BLS Laptop Service. All Rights Reserved.</p>
+                <div class="security-badges">
+                    <span><i data-lucide="lock"></i> Data Secured</span>
+                    <span><i data-lucide="shield-check"></i> Genuine Parts</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
