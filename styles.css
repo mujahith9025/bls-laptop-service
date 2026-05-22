@@ -44,14 +44,26 @@
     scroll-behavior: smooth;
 }
 
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: var(--font-body);
     line-height: 1.6;
-    overflow-x: hidden;
     position: relative;
 }
+
+section {
+    position: relative;
+    width: 100%;
+    overflow: hidden; /* Clips any absolute child bleeding to prevent horizontal scrolls on mobile */
+}
+
 
 /* Background Glow Blobs */
 .glow-blob {
@@ -1540,6 +1552,7 @@ a {
 
 .iframe-container iframe {
     display: block;
+    width: 100% !important;
 }
 
 /* Floating WhatsApp Button styling */
@@ -1734,6 +1747,10 @@ footer {
 @media (max-width: 768px) {
     .desktop-only {
         display: none !important;
+    }
+    
+    .glow-blob {
+        display: none !important; /* Hide giant background glow blobs on mobile to prevent overflow and boost render performance */
     }
     
     /* Header layout space optimization */
