@@ -53,6 +53,19 @@
         .highlight-meta-item strong {
             color: var(--text-primary);
         }
+        .service-detail-card p {
+            height: auto !important;
+            min-height: 70px;
+            margin-bottom: 24px;
+        }
+        .services-grid {
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)) !important;
+        }
+        @media (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)) !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -128,7 +141,7 @@
     <!-- Detailed 4-Step Process Section -->
     <section class="services-section" style="padding-top: 20px; padding-bottom: 80px;">
         <div class="container">
-            <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));">
+            <div class="services-grid">
                 
                 <!-- Step 01 -->
                 <div class="service-detail-card" style="border-radius: 20px; padding: 40px; transition: var(--transition-smooth); background: var(--grad-dark-card); box-shadow: var(--glass-glow);">
