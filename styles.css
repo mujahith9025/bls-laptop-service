@@ -1805,14 +1805,7 @@ footer {
     }
     
     .hero-graphics {
-        margin-top: 24px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-    
-    .graphic-glass {
-        max-width: 100%;
+        display: none !important; /* Hide animated diagnostics panel on mobile view to streamline screen height */
     }
     
     .features-grid {
