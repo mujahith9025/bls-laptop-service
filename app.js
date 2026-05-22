@@ -91,28 +91,235 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 6. Refurbished Shop/Sales Filter
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const productCards = document.querySelectorAll('.product-card');
+    // 6. Interactive Customer Reviews & Feedback Form
+    const starSelector = document.getElementById('interactive-star-selector');
+    const interactiveStars = document.querySelectorAll('.interactive-star');
+    const ratingHint = document.getElementById('rating-hint');
+    const reviewForm = document.getElementById('customer-review-form');
+    const reviewsFeedList = document.getElementById('reviews-feed-list');
+    const reviewInputState = document.getElementById('review-input-state');
+    const reviewSuccessState = document.getElementById('review-success-state');
+    const successClientName = document.getElementById('success-client-name');
+    const copiedReviewText = document.getElementById('copied-review-text');
+    const btnCopyReview = document.getElementById('btn-copy-review');
+    const copyStatusTxt = document.getElementById('copy-status-txt');
+    const btnWriteAnother = document.getElementById('btn-write-another');
 
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Set active button
-            filterButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    let selectedRating = 5; // Default rating is 5 stars
 
-            const filterValue = btn.getAttribute('data-filter');
+    const ratingDescriptions = {
+        1: '1 Star - Very Poor / Disappointed',
+        2: '2 Stars - Poor / Needs Improvement',
+        3: '3 Stars - Average Service',
+        4: '4 Stars - Good / Satisfied',
+        5: '5 Stars - Excellent / Highly Recommended!'
+    };
 
-            productCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                if (filterValue === 'all' || category === filterValue) {
-                    card.classList.remove('hidden');
+    // Update Star Visuals based on Rating
+    function updateStarsDisplay(rating, isHover = false) {
+        interactiveStars.forEach(star => {
+            const starValue = parseInt(star.getAttribute('data-rating'));
+            if (isHover) {
+                if (starValue <= rating) {
+                    star.classList.add('hovered');
                 } else {
-                    card.classList.add('hidden');
+                    star.classList.remove('hovered');
                 }
-            });
+            } else {
+                if (starValue <= rating) {
+                    star.classList.add('selected');
+                } else {
+                    star.classList.remove('selected');
+                }
+            }
+        });
+    }
+
+    // Set Initial Stars (All 5 selected)
+    updateStarsDisplay(selectedRating);
+
+    // Star Hover & Click Listeners
+    interactiveStars.forEach(star => {
+        const ratingValue = parseInt(star.getAttribute('data-rating'));
+
+        // Mouse Hover In
+        star.addEventListener('mouseover', () => {
+            updateStarsDisplay(ratingValue, true);
+            ratingHint.textContent = ratingDescriptions[ratingValue];
+        });
+
+        // Mouse Hover Out
+        star.addEventListener('mouseout', () => {
+            interactiveStars.forEach(s => s.classList.remove('hovered'));
+            ratingHint.textContent = ratingDescriptions[selectedRating] || 'Tap a star to rate';
+        });
+
+        // Click Star
+        star.addEventListener('click', () => {
+            selectedRating = ratingValue;
+            // Remove selected classes from all first
+            interactiveStars.forEach(s => s.classList.remove('selected'));
+            // Apply selected classes up to selectedRating
+            updateStarsDisplay(selectedRating);
+            ratingHint.textContent = ratingDescriptions[selectedRating];
         });
     });
+
+    // Form Submission Handler
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nameInput = document.getElementById('rev-name');
+            const contentInput = document.getElementById('rev-content');
+
+            const clientName = nameInput.value.trim();
+            const reviewContent = contentInput.value.trim();
+
+            if (!clientName || !reviewContent) {
+                alert('Please fill in your name and write a review.');
+                return;
+            }
+
+            // 1. Prepend dynamic review to list
+            // Generate initials
+            const nameParts = clientName.split(' ');
+            let initials = '';
+            if (nameParts.length > 1) {
+                initials = (nameParts[0][0] + nameParts[1][0]).toUpperCase();
+            } else if (nameParts.length === 1 && nameParts[0].length > 0) {
+                initials = nameParts[0].slice(0, 2).toUpperCase();
+            } else {
+                initials = 'CU';
+            }
+
+            // Assign color class based on initials code to vary avatars harmoniously
+            const avatarColorClasses = ['avatar-orange', 'avatar-blue', 'avatar-purple'];
+            const charCodeSum = initials.charCodeAt(0) + (initials.charCodeAt(1) || 0);
+            const avatarClass = avatarColorClasses[charCodeSum % avatarColorClasses.length];
+
+            // Build Star HTML dynamically
+            let starHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= selectedRating) {
+                    starHTML += `<i data-lucide="star" class="star-filled"></i> `;
+                } else {
+                    starHTML += `<i data-lucide="star" style="color: var(--text-muted); fill: none; width: 14px; height: 14px;"></i> `;
+                }
+            }
+
+            // Create New Review Card
+            const newCard = document.createElement('div');
+            newCard.className = 'review-card glass-panel';
+            newCard.style.opacity = '0';
+            newCard.style.transform = 'translateY(15px)';
+            newCard.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            newCard.innerHTML = `
+                <div class="review-card-header">
+                    <div class="reviewer-profile">
+                        <div class="reviewer-avatar ${avatarClass}">${initials}</div>
+                        <div class="reviewer-meta">
+                            <h4>${clientName}</h4>
+                            <span class="review-date">Just now</span>
+                        </div>
+                    </div>
+                    <div class="review-card-stars">
+                        ${starHTML}
+                    </div>
+                </div>
+                <p class="review-text">${reviewContent}</p>
+                <div class="review-card-footer">
+                    <span class="platform-info"><i data-lucide="map-pin"></i> Local Reviewer</span>
+                    <span class="recommend-badge"><i data-lucide="thumbs-up"></i> Verified Customer</span>
+                </div>
+            `;
+
+            // Prepend new review card
+            reviewsFeedList.insertBefore(newCard, reviewsFeedList.firstChild);
+
+            // Re-render Lucide Vector Icons in the prepended elements
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            // Smooth fade-in animation
+            setTimeout(() => {
+                newCard.style.opacity = '1';
+                newCard.style.transform = 'translateY(0)';
+            }, 50);
+
+            // 2. Clipboard Sync Auto-Copy
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(reviewContent).catch(err => {
+                    console.warn('Auto-copy failed: ', err);
+                });
+            }
+
+            // 3. Switch Form block to Success State Screen
+            successClientName.textContent = clientName;
+            copiedReviewText.textContent = reviewContent;
+
+            // Animate states
+            reviewInputState.style.display = 'none';
+            reviewSuccessState.classList.add('active');
+
+            // Scroll success block into viewport nicely
+            document.getElementById('customer-feedback-container').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    }
+
+    // Manual Copy Button functionality in Success State
+    if (btnCopyReview) {
+        btnCopyReview.addEventListener('click', () => {
+            const textToCopy = copiedReviewText.textContent;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    btnCopyReview.classList.add('copied');
+                    copyStatusTxt.textContent = 'Copied!';
+                    setTimeout(() => {
+                        btnCopyReview.classList.remove('copied');
+                        copyStatusTxt.textContent = 'Copy Review Text';
+                    }, 2500);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            } else {
+                // Fallback copy
+                const textarea = document.createElement('textarea');
+                textarea.value = textToCopy;
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    btnCopyReview.classList.add('copied');
+                    copyStatusTxt.textContent = 'Copied!';
+                    setTimeout(() => {
+                        btnCopyReview.classList.remove('copied');
+                        copyStatusTxt.textContent = 'Copy Review Text';
+                    }, 2500);
+                } catch (err) {
+                    alert('Could not copy text automatically. Please select and copy manually.');
+                }
+                document.body.removeChild(textarea);
+            }
+        });
+    }
+
+    // Write Another Review resetting form
+    if (btnWriteAnother) {
+        btnWriteAnother.addEventListener('click', () => {
+            if (reviewForm) {
+                reviewForm.reset();
+            }
+            selectedRating = 5;
+            updateStarsDisplay(selectedRating);
+            ratingHint.textContent = 'Tap a star to rate';
+
+            reviewSuccessState.classList.remove('active');
+            reviewInputState.style.display = 'block';
+        });
+    }
 
     // 7. Cost Estimator Database
     const estimatorData = {
